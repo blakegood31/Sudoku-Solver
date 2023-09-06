@@ -1,9 +1,17 @@
 import java.io.*;
 import java.util.*;
+
 public class SudokuSolver 
 {
 	public static void main(String[] args)
 	{
+		/*
+		 * Main method for the program. The main method processes the input from the console and
+		 * translates it into the form used to solve the puzzles, solves the puzzles, and displays the results. 
+		 * 
+		 * Input from the console is stored in the ArrayList 'puzzles' after it has been processed into 
+		 * 2-D arrays representing each puzzle 
+		 */
 		//Creates variables to be used with buffered reader
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String line;
@@ -58,7 +66,7 @@ public class SudokuSolver
 		//Runs the method to solve each puzzle
 		for(int i = 0; i<puzzles.size(); i++){
 			solutions = 0;
-			boolean works = sudokuSolver(puzzles.get(i), 0, 0);
+			sudokuSolver(puzzles.get(i), 0, 0);
 			//Sets the index of the solved Sudoku in ArrayList 'answers' for current puzzle 
 			if(ansIndex == 0 && solutions>0){
 				ansIndex = solutions - 1;
@@ -102,6 +110,13 @@ public class SudokuSolver
 	//Method that solves the puzzle
 	public static boolean sudokuSolver(int[][] puzzle, int row, int col)
 	{
+		/*
+		 * Recursive method that is used to solve the sudoku puzzles 
+		 * 
+		 * Input: A 2-D array representing the puzzles, and the current row and column to be solved 
+		 * 
+		 * Output: Boolean 'done'. Value is never used, just used for recursion 
+		 */
 		boolean lastNum = false; //Boolean that is set to true if the last cell of the puzzle is already filled in
 		boolean done = false; //Boolean that is never set to true. Only used for recursion
 		//Checks if cell being checked is already filled 
@@ -164,6 +179,13 @@ public class SudokuSolver
 	//Method to check if number is valid for current cell
 	public static boolean goodNum(int num, int row, int col, int puzzle[][])
 	{
+		/*
+		 * Method that checks to see if a number is valid for the current cell being solved 
+		 * 
+		 * Input: The number being checked, the current row and column being solved, a 2-D array representing the puzzle 
+		 * 
+		 * Output: True if the number being checked is a valid number, False otherwise 
+		 */
 		//Checks to see if number is found elsewhere in the current row
 		for(int i = 0; i<9; i++){
 			if(puzzle[row][i] == num){
